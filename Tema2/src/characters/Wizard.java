@@ -2,7 +2,16 @@ package characters;
 
 public class Wizard extends Hero {
 
-    private int hp = 400;
+    private float hp;
+
+    Wizard(PositionOnBattleground coords, int initialHP) {
+        super(coords, initialHP);
+    }
+
+    Wizard(final int initialHP) {
+        super(initialHP);
+    }
+
     @Override
     public void acceptFight(Hero hero) {
         hero.fight(this);
@@ -35,4 +44,10 @@ public class Wizard extends Hero {
 
     }
 
+    @Override
+    public String toString() {
+        return "Wizard{" +
+                "hp=" + hp +
+                '}';
+    }
 }

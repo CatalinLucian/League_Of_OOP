@@ -1,5 +1,7 @@
 package Main;
 
+import battleground.Location;
+import battleground.LocationFactory;
 import characters.PositionOnBattleground;
 
 import java.io.File;
@@ -16,13 +18,14 @@ public class GameInputLoader {
     }
 
     public GameInput load() throws FileNotFoundException{
-        int noOfRows = 0;
-        int noOfColumns = 0;
+        int noOfRows;
+        int noOfColumns;
         char[][] battleArea;
-        int noOfHeroes = 0;
+        Location[][] battleground;
+        int noOfHeroes;
         List<Character> heroList = new ArrayList<>();
         List<PositionOnBattleground> initialPositions = new ArrayList<>();
-        int noOfRounds = 0;
+        int noOfRounds;
         List<String> heroesMoves = new ArrayList<>();
 
         File fr = new File(inputPath);
@@ -33,9 +36,16 @@ public class GameInputLoader {
         noOfColumns = sc.nextInt();
 
         battleArea = new char[noOfRows][noOfColumns];
+        battleground = new Location[noOfRows][noOfColumns];
 
         for (int i = 0; i < noOfRows; i++) {
             battleArea[i] = sc.next().toCharArray();
+        }
+
+        for (int i = 0 ; i < noOfRows; i++) {
+            for (int j = 0; j < noOfColumns; j++) {
+                battleground[i][j] = LocationFactory.getInstance().createLocation(battleArea[i][j]);
+            }
         }
 
         noOfHeroes = sc.nextInt();
@@ -44,7 +54,7 @@ public class GameInputLoader {
             heroList.add(sc.next().charAt(0));
             int xCoord = sc.nextInt();
             int yCoord = sc.nextInt();
-            initialPositions.add(new PositionOnBattleground(xCoord, yCoord));
+            initialPositions.add(new PositionOnBattleground(xCoord, yCoord, battleground[xCoord][yCoord]));
         }
 
         noOfRounds = sc.nextInt();
@@ -54,7 +64,7 @@ public class GameInputLoader {
             heroesMoves.add(toAdd);
         }
 
-        return new GameInput(noOfRows, noOfColumns, battleArea, noOfHeroes, heroList,
+        return new GameInput(noOfRows, noOfColumns, battleground, noOfHeroes, heroList,
                                 initialPositions, noOfRounds, heroesMoves);
     }
 }

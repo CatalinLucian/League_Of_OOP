@@ -2,7 +2,15 @@ package characters;
 
 public class Pyromancer extends Hero {
 
-    private int hp = 500;
+    private float hp = 500;
+
+    Pyromancer(PositionOnBattleground coords, int initialHP) {
+        super(coords, initialHP);
+    }
+
+    Pyromancer(final int initialHP) {
+        super(initialHP);
+    }
 
     @Override
     public void acceptFight(Hero hero) {
@@ -37,6 +45,13 @@ public class Pyromancer extends Hero {
     @Override
     public void sufferEffects() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Pyromancer{" +
+                "hp=" + hp +
+                '}';
     }
 }
 

@@ -3,7 +3,15 @@ package characters;
 
 public class Rogue extends Hero {
 
-    private int hp = 600;
+    private float hp;
+
+    Rogue(PositionOnBattleground coords, int initialHP) {
+        super(coords, initialHP);
+    }
+
+    Rogue(final int initialHP) {
+        super(initialHP);
+    }
 
     @Override
     public void acceptFight(Hero hero) {
@@ -38,5 +46,12 @@ public class Rogue extends Hero {
     @Override
     public void sufferEffects() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Rogue{" +
+                "hp=" + hp +
+                '}';
     }
 }

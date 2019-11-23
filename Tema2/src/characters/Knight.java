@@ -2,7 +2,15 @@ package characters;
 
 public class Knight extends Hero {
 
-    private int hp = 900;
+    private float hp;
+
+    Knight(PositionOnBattleground coords, int initialHP) {
+        super(coords, initialHP);
+    }
+
+    Knight(final int initialHP) {
+        super(initialHP);
+    }
 
     @Override
     public void acceptFight(Hero hero) {
@@ -36,4 +44,10 @@ public class Knight extends Hero {
 
     }
 
+    @Override
+    public String toString() {
+        return "Knight{" +
+                "hp=" + hp +
+                '}';
+    }
 }

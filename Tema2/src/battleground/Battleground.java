@@ -7,17 +7,17 @@ import java.util.Vector;
 public class Battleground {
     private static Battleground instance = null;
 
-    private final Vector<Vector<Character>> battleground;
+    private final Vector<Vector<Location>> battleground;
 
     private Battleground() {
-        battleground = new Vector<Vector<Character>>();
+        battleground = new Vector<Vector<Location>>();
         initMap();
     }
 
     private void initMap() {
-        char[][] battleground = GameInput.getBattleArea();
+        Location[][] battleground = GameInput.getBattleArea();
         for (int i = 0; i < battleground.length; i++) {
-            Vector<Character> LineByLine = new Vector<>();
+            Vector<Location> LineByLine = new Vector<>();
             for (int j = 0; j < battleground[0].length; j++) {
                 LineByLine.add(battleground[i][j]);
             }
@@ -32,7 +32,7 @@ public class Battleground {
         return instance;
     }
 
-    public Vector<Vector<Character>> getBattleground() {
+    public Vector<Vector<Location>> getBattleground() {
         return battleground;
     }
 

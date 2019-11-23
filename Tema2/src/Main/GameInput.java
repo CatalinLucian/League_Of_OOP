@@ -1,5 +1,6 @@
 package Main;
 
+import battleground.Location;
 import characters.PositionOnBattleground;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ public final class GameInput {
     private final int noOfRows;
     private final int noOfColumns;
 
-    private static char[][] battleArea;
+    private static Location[][] battleArea;
 
 
     private final int noOfHeroes;
@@ -20,7 +21,7 @@ public final class GameInput {
     private final int noOfRounds;
     private final List<String> heroesMoves;
 
-    public GameInput(final int noOfRows, final int noOfColumns, final char[][] battleArea,
+    public GameInput(final int noOfRows, final int noOfColumns, final Location[][] battleArea,
                      final int noOfHeroes, final List<Character> heroList,
                      final List<PositionOnBattleground> initialPositions, final int noOfRounds,
                      final List<String> heroesMoves) {
@@ -43,7 +44,7 @@ public final class GameInput {
     }
 
 
-    public static char[][] getBattleArea() {
+    public static Location[][] getBattleArea() {
         return battleArea;
     }
 
