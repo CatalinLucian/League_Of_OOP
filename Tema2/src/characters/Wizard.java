@@ -1,8 +1,14 @@
 package characters;
 
+import abilities.Skill;
+import abilities.wizard.Deflect;
+import abilities.wizard.Drain;
+
 public class Wizard extends Hero {
 
     private float hp;
+    private final Skill deflect = new Deflect(this);
+    private final Skill drain = new Drain(this);
 
     Wizard(PositionOnBattleground coords, int initialHP) {
         super(coords, initialHP);
@@ -35,13 +41,8 @@ public class Wizard extends Hero {
     }
 
     @Override
-    public void LevelUp() {
-
-    }
-
-    @Override
-    public void sufferEffects() {
-
+    public void acceptRaceModifier(Skill skill) {
+        skill.applyRaceModifier(this);
     }
 
     @Override
@@ -49,5 +50,13 @@ public class Wizard extends Hero {
         return "Wizard{" +
                 "hp=" + hp +
                 '}';
+    }
+
+    public float getHp() {
+        return hp;
+    }
+
+    public void setHp(float hp) {
+        this.hp = hp;
     }
 }

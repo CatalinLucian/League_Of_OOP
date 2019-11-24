@@ -1,8 +1,14 @@
 package characters;
 
+import abilities.Skill;
+import abilities.pyromancer.Fireblast;
+import abilities.pyromancer.Ignite;
+
 public class Pyromancer extends Hero {
 
     private float hp = 500;
+    private final Skill fireblast = new Fireblast(this);
+    private final Skill ignite = new Ignite(this);
 
     Pyromancer(PositionOnBattleground coords, int initialHP) {
         super(coords, initialHP);
@@ -37,14 +43,10 @@ public class Pyromancer extends Hero {
 
     }
 
-    @Override
-    public void LevelUp() {
-
-    }
 
     @Override
-    public void sufferEffects() {
-
+    public void acceptRaceModifier(Skill skill) {
+        skill.applyRaceModifier(this);
     }
 
     @Override
@@ -52,6 +54,14 @@ public class Pyromancer extends Hero {
         return "Pyromancer{" +
                 "hp=" + hp +
                 '}';
+    }
+
+    public float getHp() {
+        return hp;
+    }
+
+    public void setHp(float hp) {
+        this.hp = hp;
     }
 }
 

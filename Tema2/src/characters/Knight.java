@@ -1,14 +1,20 @@
 package characters;
 
+import abilities.Skill;
+import abilities.knight.Execute;
+import abilities.knight.Slam;
+
 public class Knight extends Hero {
 
     private float hp;
+    private final Skill execute = new Execute(this);
+    private final Skill slam = new Slam(this);
 
     Knight(PositionOnBattleground coords, int initialHP) {
         super(coords, initialHP);
     }
 
-    Knight(final int initialHP) {
+    public Knight(final int initialHP) {
         super(initialHP);
     }
 
@@ -35,13 +41,8 @@ public class Knight extends Hero {
     }
 
     @Override
-    public void LevelUp() {
-
-    }
-
-    @Override
-    public void sufferEffects() {
-
+    public void acceptRaceModifier(Skill skill) {
+        skill.applyRaceModifier(this);
     }
 
     @Override
@@ -50,4 +51,16 @@ public class Knight extends Hero {
                 "hp=" + hp +
                 '}';
     }
+
+    public float getHp() {
+        return hp;
+    }
+
+    public void setHp(float hp) {
+        this.hp = hp;
+    }
+
+//    public void initSkillsForHero() {
+//        this.execute.
+//    }
 }

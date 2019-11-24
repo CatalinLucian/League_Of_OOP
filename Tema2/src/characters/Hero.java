@@ -1,6 +1,8 @@
 package characters;
 
 
+import abilities.Skill;
+
 public abstract class Hero {
 
     private final int initialHP;
@@ -30,9 +32,11 @@ public abstract class Hero {
 
     public abstract void fight(Wizard wizard);
 
-    public abstract void LevelUp();
+    public void fight() {
 
-    public abstract void sufferEffects();
+    }
+
+    public abstract void acceptRaceModifier(Skill skill);
 
     public int getLevel() {
         return level;
@@ -56,5 +60,9 @@ public abstract class Hero {
 
     public PositionOnBattleground getCoords() {
         return coords;
+    }
+
+    public void setCoords(PositionOnBattleground coords) {
+        this.coords = coords;
     }
 }

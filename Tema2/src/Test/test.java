@@ -3,6 +3,7 @@ package Test;
 import Main.GameInput;
 import Main.GameInputLoader;
 import Main.Writer;
+import battleground.Battleground;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -33,6 +34,7 @@ public class test {
         for (int i = 0; i < input.getNoOfRounds(); i++) {
             System.out.println(input.getHeroesMoves().get(i));
         }
+
         Writer writer = new Writer(out);
         writer.writeToFile();
     }
