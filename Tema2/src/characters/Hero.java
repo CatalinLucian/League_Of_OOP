@@ -3,12 +3,17 @@ package characters;
 
 import abilities.Skill;
 
+import java.util.List;
+
 public abstract class Hero {
 
     private final int initialHP;
     private int level = 0;
     private int xp = 0;
     private PositionOnBattleground coords;
+    private List<Directions> moves;
+    private Skill firstSkill;
+    private Skill secondSkill;
 
 
 
@@ -36,7 +41,7 @@ public abstract class Hero {
 
     }
 
-    public abstract void acceptRaceModifier(Skill skill);
+    public abstract int acceptRaceModifier(Skill skill);
 
     public int getLevel() {
         return level;
@@ -65,4 +70,18 @@ public abstract class Hero {
     public void setCoords(PositionOnBattleground coords) {
         this.coords = coords;
     }
+
+    public List<Directions> getMoves() {
+        return moves;
+    }
+
+    public void setMoves(List<Directions> moves) {
+        this.moves = moves;
+    }
+
+    public abstract Skill getFirstSkill();
+
+    public abstract Skill getSecondSkill();
+    public abstract float getHp();
+
 }

@@ -1,14 +1,16 @@
 package characters;
 
+import Constants.KnightConstants;
 import abilities.Skill;
 import abilities.knight.Execute;
 import abilities.knight.Slam;
 
 public class Knight extends Hero {
 
-    private float hp;
-    private final Skill execute = new Execute(this);
-    private final Skill slam = new Slam(this);
+    private float hp = KnightConstants.INITIAL_HP;
+    private Skill firstSkill = new Execute(this);
+    private Skill secondSkill = new Slam(this);
+    private boolean isDead = false;
 
     Knight(PositionOnBattleground coords, int initialHP) {
         super(coords, initialHP);
@@ -41,8 +43,8 @@ public class Knight extends Hero {
     }
 
     @Override
-    public void acceptRaceModifier(Skill skill) {
-        skill.applyRaceModifier(this);
+    public int acceptRaceModifier(Skill skill) {
+        return skill.applyRaceModifier(this);
     }
 
     @Override
@@ -60,7 +62,17 @@ public class Knight extends Hero {
         this.hp = hp;
     }
 
-//    public void initSkillsForHero() {
-//        this.execute.
-//    }
+    @Override
+    public Skill getFirstSkill() {
+        return  firstSkill;
+    }
+
+    public void setIsDead() {
+        isDead = true;
+    }
+
+    @Override
+    public Skill getSecondSkill() {
+        return secondSkill;
+    }
 }

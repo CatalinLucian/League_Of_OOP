@@ -7,14 +7,15 @@ import abilities.wizard.Drain;
 public class Wizard extends Hero {
 
     private float hp;
-    private final Skill deflect = new Deflect(this);
-    private final Skill drain = new Drain(this);
+    private final Skill firstSkill = new Drain(this);
+    private final Skill secondSkill = new Deflect(this);
+    private boolean isDead = false;
 
     Wizard(PositionOnBattleground coords, int initialHP) {
         super(coords, initialHP);
     }
 
-    Wizard(final int initialHP) {
+    public Wizard(final int initialHP) {
         super(initialHP);
     }
 
@@ -41,8 +42,22 @@ public class Wizard extends Hero {
     }
 
     @Override
-    public void acceptRaceModifier(Skill skill) {
-        skill.applyRaceModifier(this);
+    public int acceptRaceModifier(Skill skill) {
+        return skill.applyRaceModifier(this);
+    }
+
+    @Override
+    public Skill getFirstSkill() {
+        return firstSkill;
+    }
+
+    @Override
+    public Skill getSecondSkill() {
+        return secondSkill;
+    }
+
+    public void setIsDead() {
+        isDead = true;
     }
 
     @Override

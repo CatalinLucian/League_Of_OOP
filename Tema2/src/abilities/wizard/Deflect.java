@@ -38,4 +38,9 @@ public class Deflect implements Skill {
         return 0;
     }
 
+    @Override
+    public void modifyBaseDamage() {
+        this.baseDamage = WizardConstants.DEFLECT_PERCENT +
+                wizard.getLevel() * WizardConstants.ADD_TO_DEFLECT_PER_LEVEL;
+    }
 }

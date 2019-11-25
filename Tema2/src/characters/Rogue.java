@@ -8,14 +8,15 @@ import abilities.rogue.Paralysis;
 public class Rogue extends Hero {
 
     private float hp;
-    private final Skill paralysis = new Paralysis(this);
-    private final Skill backstab = new Backstab(this);
+    private final Skill firstSkill = new Paralysis(this);
+    private final Skill secondSkill = new Backstab(this);
+    private boolean isDead = false;
 
     Rogue(PositionOnBattleground coords, int initialHP) {
         super(coords, initialHP);
     }
 
-    Rogue(final int initialHP) {
+    public Rogue(final int initialHP) {
         super(initialHP);
     }
 
@@ -46,8 +47,22 @@ public class Rogue extends Hero {
 
 
     @Override
-    public void acceptRaceModifier(Skill skill) {
-        skill.applyRaceModifier(this);
+    public int acceptRaceModifier(Skill skill) {
+        return skill.applyRaceModifier(this);
+    }
+
+    @Override
+    public Skill getFirstSkill() {
+        return firstSkill;
+    }
+
+    @Override
+    public Skill getSecondSkill() {
+        return secondSkill;
+    }
+
+    public void setIsDead() {
+        isDead = true;
     }
 
     @Override

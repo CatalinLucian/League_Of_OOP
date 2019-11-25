@@ -38,4 +38,9 @@ public class Fireblast implements Skill {
         return Math.round(this.baseDamage * 1.05f);
     }
 
+    @Override
+    public void modifyBaseDamage() {
+        this.baseDamage = PyromancerConstants.BASE_DAMAGE_FIREBLAST +
+                pyromancer.getLevel() * PyromancerConstants.ADD_TO_FIREBLAST_PER_LEVEL;
+    }
 }

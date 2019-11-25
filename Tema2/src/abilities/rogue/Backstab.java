@@ -38,4 +38,9 @@ public class Backstab implements Skill {
         return Math.round(this.baseDamage * 1.25f);
     }
 
+    @Override
+    public void modifyBaseDamage() {
+        this.baseDamage = RogueConstants.BASE_DAMAGE_BACKSTAB +
+                rogue.getLevel() * RogueConstants.ADD_TO_BACKSTAB_PER_LEVEL;
+    }
 }

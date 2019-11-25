@@ -38,4 +38,9 @@ public class Ignite implements Skill {
         return Math.round(this.baseDamage * 1.05f);
     }
 
+    @Override
+    public void modifyBaseDamage() {
+        this.baseDamage = PyromancerConstants.BASE_DAMAGE_IGNITE +
+                pyromancer.getLevel() * PyromancerConstants.ADD_TO_IGNITE_PER_LEVEL;
+    }
 }

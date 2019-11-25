@@ -38,4 +38,9 @@ public class Slam implements Skill {
         return Math.round(this.baseDamage * 0.95f);
     }
 
+    public void modifyBaseDamage() {
+        this.baseDamage = KnightConstants.BASE_DAMAGE_SLAM +
+                knight.getLevel() * KnightConstants.ADD_TO_SLAM_PER_LEVEL;
+    }
+
 }

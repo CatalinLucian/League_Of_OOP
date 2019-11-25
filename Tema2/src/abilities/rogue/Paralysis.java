@@ -38,4 +38,9 @@ public class Paralysis implements Skill {
         return Math.round(this.baseDamage * 1.25f);
     }
 
+    @Override
+    public void modifyBaseDamage() {
+        this.baseDamage = RogueConstants.BASE_DAMAGE_PARALYSIS_PER_ROUND +
+                rogue.getLevel() * RogueConstants.ADD_TO_BASE_DAMAGE_PARALYSIS_PER_LEVEL;
+    }
 }

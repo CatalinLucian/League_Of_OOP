@@ -8,5 +8,5 @@ public interface Skill {
     public int applyRaceModifier(Rogue rogue);
     public int applyRaceModifier(Pyromancer pyromancer);
     public int applyRaceModifier(Wizard wizard);
-
+    public void modifyBaseDamage();
 }
