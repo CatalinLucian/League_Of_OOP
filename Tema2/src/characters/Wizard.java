@@ -17,29 +17,9 @@ public class Wizard extends Hero {
 
     public Wizard(final int initialHP) {
         super(initialHP);
+        hp = initialHP;
     }
 
-    @Override
-    public void acceptFight(Hero hero) {
-        hero.fight(this);
-    }
-
-    @Override
-    public void fight(Knight knight) {
-
-    }
-    @Override
-    public void fight(Pyromancer pyromancer) {
-
-    }
-    @Override
-    public void fight(Wizard wizard) {
-
-    }
-    @Override
-    public void fight(Rogue rogue) {
-
-    }
 
     @Override
     public int acceptRaceModifier(Skill skill) {

@@ -2,6 +2,7 @@ package abilities.knight;
 
 import Constants.KnightConstants;
 import abilities.Skill;
+import battleground.Location;
 import characters.*;
 
 public class Slam implements Skill {
@@ -20,22 +21,26 @@ public class Slam implements Skill {
 
     @Override
     public int applyRaceModifier(Knight knight) {
-        return Math.round(this.baseDamage * 1.2f);
+        float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
+        return Math.round(this.baseDamage * 1.2f * landAmplification);
     }
 
     @Override
     public int applyRaceModifier(Rogue rogue) {
-        return Math.round(this.baseDamage * 0.8f);
+        float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
+        return Math.round(this.baseDamage * 0.8f * landAmplification);
     }
 
     @Override
     public int applyRaceModifier(Pyromancer pyromancer) {
-        return Math.round(this.baseDamage * 0.9f);
+        float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
+        return Math.round(this.baseDamage * 0.9f * landAmplification);
     }
 
     @Override
     public int applyRaceModifier(Wizard wizard) {
-        return Math.round(this.baseDamage * 0.95f);
+        float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
+        return Math.round(this.baseDamage * 0.95f * landAmplification);
     }
 
     public void modifyBaseDamage() {
@@ -43,4 +48,8 @@ public class Slam implements Skill {
                 knight.getLevel() * KnightConstants.ADD_TO_SLAM_PER_LEVEL;
     }
 
+    @Override
+    public float acceptCellModifier(Location location) {
+        return location.cellModifier(this);
+    }
 }

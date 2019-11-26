@@ -1,5 +1,6 @@
 package abilities;
 
+import battleground.Location;
 import characters.*;
 
 public interface Skill {
@@ -9,4 +10,5 @@ public interface Skill {
     public int applyRaceModifier(Pyromancer pyromancer);
     public int applyRaceModifier(Wizard wizard);
     public void modifyBaseDamage();
+    public float acceptCellModifier(Location location);
 }

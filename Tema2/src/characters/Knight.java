@@ -4,6 +4,8 @@ import Constants.KnightConstants;
 import abilities.Skill;
 import abilities.knight.Execute;
 import abilities.knight.Slam;
+import battleground.Land;
+import battleground.Location;
 
 public class Knight extends Hero {
 
@@ -18,29 +20,10 @@ public class Knight extends Hero {
 
     public Knight(final int initialHP) {
         super(initialHP);
+        hp = initialHP;
     }
 
-    @Override
-    public void acceptFight(Hero hero) {
-        hero.fight(this);
-    }
 
-    @Override
-    public void fight(Knight knight) {
-
-    }
-    @Override
-    public void fight(Pyromancer pyromancer) {
-
-    }
-    @Override
-    public void fight(Wizard wizard) {
-
-    }
-    @Override
-    public void fight(Rogue rogue) {
-
-    }
 
     @Override
     public int acceptRaceModifier(Skill skill) {

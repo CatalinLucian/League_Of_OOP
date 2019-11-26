@@ -16,7 +16,7 @@ public class GameLogic {
 
     private void playRound() {
         for (Hero hero : Game.getInstance().getHeroes()) {
-            hero.fight();
+
         }
     }
 }

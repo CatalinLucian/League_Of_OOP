@@ -3,6 +3,7 @@ package abilities.wizard;
 import Constants.KnightConstants;
 import Constants.WizardConstants;
 import abilities.Skill;
+import battleground.Location;
 import characters.*;
 
 public class Drain implements Skill {
@@ -28,26 +29,34 @@ public class Drain implements Skill {
 
     @Override
     public int applyRaceModifier(Knight knight) {
-        return Math.round(Math.min(0.3f * knight.getInitialHP(), knight.getHp()) * this.baseDamage * 1.2f);
+        float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
+        return Math.round(Math.min(0.3f * knight.getInitialHP(), knight.getHp()) * this.baseDamage * 1.2f * desertAmplification);
     }
 
     @Override
     public int applyRaceModifier(Rogue rogue) {
-        return Math.round(Math.min(0.3f * rogue.getInitialHP(), rogue.getHp()) * this.baseDamage * 0.8f);
+        float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
+        return Math.round(Math.min(0.3f * rogue.getInitialHP(), rogue.getHp()) * this.baseDamage * 0.8f * desertAmplification);
     }
 
     @Override
     public int applyRaceModifier(Pyromancer pyromancer) {
-        return Math.round(Math.min(0.3f * pyromancer.getInitialHP(), pyromancer.getHp()) * this.baseDamage * 0.9f);
+        float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
+        return Math.round(Math.min(0.3f * pyromancer.getInitialHP(), pyromancer.getHp()) * this.baseDamage * 0.9f * desertAmplification);
     }
 
     @Override
     public int applyRaceModifier(Wizard wizard) {
-        return Math.round(Math.min(0.3f * wizard.getInitialHP(), wizard.getHp()) * this.baseDamage * 1.05f);
+        float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
+        return Math.round(Math.min(0.3f * wizard.getInitialHP(), wizard.getHp()) * this.baseDamage * 1.05f * desertAmplification);
     }
 
     public void modifyBaseDamage() {
         this.baseDamage = WizardConstants.DRAIN_PERCENT +
                 wizard.getLevel() * WizardConstants.ADD_TO_DRAIN_PER_LEVEL;
+    }
+
+    public float acceptCellModifier(Location location) {
+        return location.cellModifier(this);
     }
 }

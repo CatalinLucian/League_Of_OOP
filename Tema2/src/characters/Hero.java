@@ -2,6 +2,7 @@ package characters;
 
 
 import abilities.Skill;
+import battleground.*;
 
 import java.util.List;
 
@@ -26,22 +27,18 @@ public abstract class Hero {
         this.initialHP = initialHP;
     }
 
-    // For double dispatch
-    public abstract void acceptFight(Hero hero);
-
-    public abstract void fight(Knight knight);
-
-    public abstract void fight(Rogue rogue);
-
-    public abstract void fight(Pyromancer pyromancer);
-
-    public abstract void fight(Wizard wizard);
-
-    public void fight() {
-
-    }
 
     public abstract int acceptRaceModifier(Skill skill);
+
+    //public abstract float acceptCellModifier(Location location);
+//
+//    public abstract int CellModifier(Land land);
+//
+//    public abstract int CellModifier(Volcanic volcanic);
+//
+//    public abstract int CellModifier(Desert desert);
+//
+//    public abstract int CellModifier(Woods woods);
 
     public int getLevel() {
         return level;

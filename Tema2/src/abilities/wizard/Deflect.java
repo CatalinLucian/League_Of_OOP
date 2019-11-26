@@ -2,6 +2,7 @@ package abilities.wizard;
 
 import Constants.WizardConstants;
 import abilities.Skill;
+import battleground.Location;
 import characters.*;
 
 public class Deflect implements Skill {
@@ -20,17 +21,20 @@ public class Deflect implements Skill {
 
     @Override
     public int applyRaceModifier(Knight knight) {
-        return Math.round(this.baseDamage * 1.4f);
+        float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
+        return Math.round(this.baseDamage * 1.4f * desertAmplification);
     }
 
     @Override
     public int applyRaceModifier(Rogue rogue) {
-        return Math.round(this.baseDamage * 1.2f);
+        float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
+        return Math.round(this.baseDamage * 1.2f * desertAmplification);
     }
 
     @Override
     public int applyRaceModifier(Pyromancer pyromancer) {
-        return Math.round(this.baseDamage * 1.3f);
+        float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
+        return Math.round(this.baseDamage * 1.3f * desertAmplification);
     }
 
     @Override
@@ -43,4 +47,9 @@ public class Deflect implements Skill {
         this.baseDamage = WizardConstants.DEFLECT_PERCENT +
                 wizard.getLevel() * WizardConstants.ADD_TO_DEFLECT_PER_LEVEL;
     }
+
+    public float acceptCellModifier(Location location) {
+        return location.cellModifier(this);
+    }
+
 }
