@@ -22,19 +22,19 @@ public class Deflect implements Skill {
     @Override
     public int applyRaceModifier(Knight knight) {
         float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
-        return Math.round(this.baseDamage * 1.4f * desertAmplification);
+        return Math.round(this.baseDamage * 1.4f * desertAmplification * calculateDmg(knight));
     }
 
     @Override
     public int applyRaceModifier(Rogue rogue) {
         float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
-        return Math.round(this.baseDamage * 1.2f * desertAmplification);
+        return Math.round(this.baseDamage * 1.2f * desertAmplification * calculateDmg(rogue));
     }
 
     @Override
     public int applyRaceModifier(Pyromancer pyromancer) {
         float desertAmplification = this.acceptCellModifier(this.wizard.getCoords().getLoc());
-        return Math.round(this.baseDamage * 1.3f * desertAmplification);
+        return Math.round(this.baseDamage * 1.3f * desertAmplification * calculateDmg(pyromancer));
     }
 
     @Override
@@ -52,4 +52,13 @@ public class Deflect implements Skill {
         return location.cellModifier(this);
     }
 
+    public int calculateDmg(Hero hero) {
+        float x = hero.getFirstSkill().getBaseDamage();
+        float y = hero.getSecondSkill().getBaseDamage();
+        return Math.round(x + y);
+    }
+
+    public float getBaseDamage() {
+        return baseDamage;
+    }
 }

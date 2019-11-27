@@ -4,7 +4,9 @@ import Constants.KnightConstants;
 import Constants.PyromancerConstants;
 import Constants.RogueConstants;
 import Constants.WizardConstants;
+import abilities.Fight;
 import abilities.Skill;
+import battleground.Desert;
 import battleground.Land;
 import battleground.Location;
 import characters.*;
@@ -48,7 +50,7 @@ public class Execute implements Skill {
 
     public int applyRaceModifier(Knight knight) {
         if(knight.getHp() <= calculateHPLimit(knight)) {
-            knight.setIsDead();
+            knight.setIsDead(true);
             return 0;
         }
         float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
@@ -56,7 +58,7 @@ public class Execute implements Skill {
     }
     public int applyRaceModifier(Pyromancer pyromancer) {
         if(pyromancer.getHp() <= calculateHPLimit(pyromancer)) {
-            pyromancer.setIsDead();
+            pyromancer.setIsDead(true);
             return 0;
         }
         float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
@@ -64,7 +66,7 @@ public class Execute implements Skill {
     }
     public int applyRaceModifier(Rogue rogue) {
         if(rogue.getHp() <= calculateHPLimit(rogue)) {
-            rogue.setIsDead();
+            rogue.setIsDead(true);
         }
         float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
         return Math.round(this.baseDamage * 1.15f * landAmplification);
@@ -72,7 +74,7 @@ public class Execute implements Skill {
 
     public int applyRaceModifier(Wizard wizard) {
         if(wizard.getHp() <= calculateHPLimit(wizard)) {
-            wizard.setIsDead();
+            wizard.setIsDead(true);
             return 0;
         }
         float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
@@ -89,15 +91,48 @@ public class Execute implements Skill {
         return location.cellModifier(this);
     }
 
-    public static void main(String[] args) {
-        Hero k = new Knight(900);
-        Hero r  = new Wizard(400);
-        k.setCoords(new PositionOnBattleground(0,0, new Land()));
-        r.setCoords(new PositionOnBattleground(0,0, new Land()));
-        System.out.println(r.acceptRaceModifier(k.getFirstSkill()));
+    public Knight getKnight() {
+        return knight;
     }
 
-    public String toString() {
-        return "muie";
+    public float getBaseDamage() {
+        return baseDamage;
     }
+
+    public static void main(String[] args) {
+//        Hero k = new Knight(900);
+//        Hero r  = new Knight(900);
+//        k.setCoords(new PositionOnBattleground(0,0, new Desert()));
+//        r.setCoords(new PositionOnBattleground(0,0, new Desert()));
+//        int damageTor_1 = r.acceptRaceModifier(k.getFirstSkill());
+//        int damageTor_2 = r.acceptRaceModifier(k.getSecondSkill());
+//        int dmgFirstRound = damageTor_1 + damageTor_2;
+//        int damageTok_1 = k.acceptRaceModifier(r.getFirstSkill());
+//        int damageTok_2 = k.acceptRaceModifier(r.getSecondSkill());
+//        int damageFirstRound = damageTok_1 + damageTok_2;
+//        System.out.println("Damage suferit de r: " + dmgFirstRound);
+//        System.out.println("Damage suferi de k: " + damageFirstRound);
+//        r.setHp(r.getHp() - dmgFirstRound);
+//        k.setHp(k.getHp() - damageFirstRound);
+//        int dmgK_2 = k.acceptRaceModifier(r.getFirstSkill()) + k.acceptRaceModifier(r.getSecondSkill());
+//        int dmgR_2 = r.acceptRaceModifier(k.getFirstSkill()) + r.acceptRaceModifier(k.getSecondSkill());
+//        System.out.println(dmgK_2);
+//        System.out.println(dmgR_2);
+//        r.setHp(r.getHp() - dmgR_2);
+//        k.setHp(k.getHp() - dmgK_2);
+//        System.out.println(k);
+
+        Hero k = new Knight(900);
+        Hero r  = new Knight(900);
+        k.setCoords(new PositionOnBattleground(0,0, new Desert()));
+        r.setCoords(new PositionOnBattleground(0,0, new Desert()));
+        int noOfRounds = 2;
+        for(int i = 0; i < noOfRounds; i++) {
+            Fight fight = new Fight(k, r);
+            fight.fight();
+        }
+        System.out.println(k);
+        System.out.println(r);
+    }
+
 }

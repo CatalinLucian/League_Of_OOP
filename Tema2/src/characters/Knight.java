@@ -9,17 +9,16 @@ import battleground.Location;
 
 public class Knight extends Hero {
 
-    private float hp = KnightConstants.INITIAL_HP;
+    private int hp = KnightConstants.INITIAL_HP;
     private Skill firstSkill = new Execute(this);
     private Skill secondSkill = new Slam(this);
-    private boolean isDead = false;
 
     Knight(PositionOnBattleground coords, int initialHP) {
-        super(coords, initialHP);
+        super(coords, initialHP, 'K');
     }
 
     public Knight(final int initialHP) {
-        super(initialHP);
+        super(initialHP, 'K');
         hp = initialHP;
     }
 
@@ -30,28 +29,19 @@ public class Knight extends Hero {
         return skill.applyRaceModifier(this);
     }
 
-    @Override
-    public String toString() {
-        return "Knight{" +
-                "hp=" + hp +
-                '}';
-    }
 
-    public float getHp() {
+
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(float hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 
     @Override
     public Skill getFirstSkill() {
         return  firstSkill;
-    }
-
-    public void setIsDead() {
-        isDead = true;
     }
 
     @Override

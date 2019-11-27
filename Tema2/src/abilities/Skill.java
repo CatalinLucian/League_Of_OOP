@@ -11,4 +11,5 @@ public interface Skill {
     public int applyRaceModifier(Wizard wizard);
     public void modifyBaseDamage();
     public float acceptCellModifier(Location location);
+    public float getBaseDamage();
 }

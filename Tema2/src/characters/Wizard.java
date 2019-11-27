@@ -1,22 +1,22 @@
 package characters;
 
+import Constants.WizardConstants;
 import abilities.Skill;
 import abilities.wizard.Deflect;
 import abilities.wizard.Drain;
 
 public class Wizard extends Hero {
 
-    private float hp;
+    private int hp = WizardConstants.INITIAL_HP;
     private final Skill firstSkill = new Drain(this);
     private final Skill secondSkill = new Deflect(this);
-    private boolean isDead = false;
 
     Wizard(PositionOnBattleground coords, int initialHP) {
-        super(coords, initialHP);
+        super(coords, initialHP, 'W');
     }
 
     public Wizard(final int initialHP) {
-        super(initialHP);
+        super(initialHP, 'W');
         hp = initialHP;
     }
 
@@ -36,22 +36,11 @@ public class Wizard extends Hero {
         return secondSkill;
     }
 
-    public void setIsDead() {
-        isDead = true;
-    }
-
-    @Override
-    public String toString() {
-        return "Wizard{" +
-                "hp=" + hp +
-                '}';
-    }
-
-    public float getHp() {
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(float hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 }

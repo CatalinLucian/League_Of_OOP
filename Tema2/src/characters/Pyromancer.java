@@ -1,22 +1,22 @@
 package characters;
 
+import Constants.PyromancerConstants;
 import abilities.Skill;
 import abilities.pyromancer.Fireblast;
 import abilities.pyromancer.Ignite;
 
 public class Pyromancer extends Hero {
 
-    private float hp = 500;
+    private int hp = PyromancerConstants.INITIAL_HP;
     private final Skill firstSkill = new Fireblast(this);
     private final Skill secondSkill = new Ignite(this);
-    private boolean isDead = false;
 
     Pyromancer(PositionOnBattleground coords, int initialHP) {
-        super(coords, initialHP);
+        super(coords, initialHP, 'P');
     }
 
     Pyromancer(final int initialHP) {
-        super(initialHP);
+        super(initialHP, 'P');
         hp = initialHP;
     }
 
@@ -36,22 +36,13 @@ public class Pyromancer extends Hero {
     public Skill getSecondSkill() {
         return secondSkill;
     }
-    public void setIsDead() {
-        isDead = true;
-    }
 
-    @Override
-    public String toString() {
-        return "Pyromancer{" +
-                "hp=" + hp +
-                '}';
-    }
 
-    public float getHp() {
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(float hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 }

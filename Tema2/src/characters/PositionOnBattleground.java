@@ -2,6 +2,8 @@ package characters;
 
 import battleground.Location;
 
+import java.util.Objects;
+
 public class PositionOnBattleground {
     private int row;
     private int column;
@@ -39,4 +41,15 @@ public class PositionOnBattleground {
                 " " + "column: " + this.getColumn();
     }
 
+    public boolean equals(PositionOnBattleground o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        return getRow() == o.getRow() &&
+                getColumn() == o.getColumn();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRow(), getColumn(), getLoc());
+    }
 }

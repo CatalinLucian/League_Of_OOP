@@ -1,4 +1,9 @@
 package abilities;
 
-public interface Effect {
+public abstract class Effect {
+    private int noOfRounds;
+
+    public Effect(final int noOfRounds) {
+        this.noOfRounds = noOfRounds;
+    }
 }

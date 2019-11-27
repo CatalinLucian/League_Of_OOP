@@ -1,7 +1,9 @@
 package abilities.knight;
 
 import Constants.KnightConstants;
+import abilities.Effect;
 import abilities.Skill;
+import abilities.damage.Incapacity;
 import battleground.Location;
 import characters.*;
 
@@ -9,6 +11,7 @@ public class Slam implements Skill {
 
     private final Knight knight;
     private float baseDamage = KnightConstants.BASE_DAMAGE_SLAM;
+    private final Effect incapacity = new Incapacity(1);
 
     public Slam(Knight knight) {
         this.knight = knight;
@@ -40,7 +43,7 @@ public class Slam implements Skill {
     @Override
     public int applyRaceModifier(Wizard wizard) {
         float landAmplification = this.acceptCellModifier(this.knight.getCoords().getLoc());
-        return Math.round(this.baseDamage * 0.95f * landAmplification);
+        return Math.round(this.baseDamage * 1.05f * landAmplification);
     }
 
     public void modifyBaseDamage() {
@@ -51,5 +54,21 @@ public class Slam implements Skill {
     @Override
     public float acceptCellModifier(Location location) {
         return location.cellModifier(this);
+    }
+
+    public Knight getKnight() {
+        return knight;
+    }
+
+    public float getBaseDamage() {
+        return baseDamage;
+    }
+
+    public void setBaseDamage(float baseDamage) {
+        this.baseDamage = baseDamage;
+    }
+
+    public Effect getIncapacity() {
+        return incapacity;
     }
 }

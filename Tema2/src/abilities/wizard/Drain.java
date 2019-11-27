@@ -59,4 +59,8 @@ public class Drain implements Skill {
     public float acceptCellModifier(Location location) {
         return location.cellModifier(this);
     }
+
+    public float getBaseDamage() {
+        return baseDamage;
+    }
 }

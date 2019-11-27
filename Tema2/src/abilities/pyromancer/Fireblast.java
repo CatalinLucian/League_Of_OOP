@@ -53,4 +53,16 @@ public class Fireblast implements Skill {
     public float acceptCellModifier(Location location) {
         return location.cellModifier(this);
     }
+
+    public Pyromancer getPyromancer() {
+        return pyromancer;
+    }
+
+    public float getBaseDamage() {
+        return baseDamage;
+    }
+
+    public void setBaseDamage(float baseDamage) {
+        this.baseDamage = baseDamage;
+    }
 }

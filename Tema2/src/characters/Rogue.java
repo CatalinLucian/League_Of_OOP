@@ -1,23 +1,23 @@
 package characters;
 
 
+import Constants.RogueConstants;
 import abilities.Skill;
 import abilities.rogue.Backstab;
 import abilities.rogue.Paralysis;
 
 public class Rogue extends Hero {
 
-    private float hp;
+    private int hp = RogueConstants.INITIAL_HP;
     private final Skill firstSkill = new Paralysis(this);
     private final Skill secondSkill = new Backstab(this);
-    private boolean isDead = false;
 
     Rogue(PositionOnBattleground coords, int initialHP) {
-        super(coords, initialHP);
+        super(coords, initialHP, 'R');
     }
 
     public Rogue(final int initialHP) {
-        super(initialHP);
+        super(initialHP, 'R');
         hp = initialHP;
     }
 
@@ -38,22 +38,12 @@ public class Rogue extends Hero {
         return secondSkill;
     }
 
-    public void setIsDead() {
-        isDead = true;
-    }
 
-    @Override
-    public String toString() {
-        return "Rogue{" +
-                "hp=" + hp +
-                '}';
-    }
-
-    public float getHp() {
+    public int getHp() {
         return hp;
     }
 
-    public void setHp(float hp) {
+    public void setHp(int hp) {
         this.hp = hp;
     }
 

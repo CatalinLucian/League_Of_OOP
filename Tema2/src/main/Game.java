@@ -11,13 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Game {
-    private static Game instance = null;
-    private static GameInput input;
-    private static List<Hero> heroes;
-    private static Battleground battleground;
+    private GameInput input;
+    private List<Hero> heroes;
+    private Battleground battleground;
 
-    private Game(GameInput input) {
-        Game.input = input;
+    Game(GameInput input) {
+        this.input = input;
         initBattleground();
         initHeroes();
         initHeroesAndMoves();
@@ -67,15 +66,6 @@ public class Game {
             hero.setMoves(directions);
         }
     }
-
-
-    public static Game getInstance(GameInput input) {
-        if(instance == null) {
-            return new Game(input);
-        }
-        return instance;
-    }
-
 
     public GameInput getInput() {
         return input;
